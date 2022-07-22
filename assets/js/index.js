@@ -88,3 +88,29 @@ nProp.innerHTML = `${totalProp}`
 propiedades.innerHTML = '';
 for (const item of propiedadesJSON) {
     propiedades.innerHTML += createCard(item.src, item.name, item.m, item.rooms, item.description)};
+
+/* FUNCION DE BUSQUEDA Y FILTRO*/
+
+const getSearchData = (numRooms, minMtsSearch, maxMtsSearch) => {
+  if (numRooms.value == '' || minMtsSearch.value == '' || maxMtsSearch.value == '') {
+      alert("Falta ingresar datos")
+  } else if (Number(minMtsSearch.value) > Number(maxMtsSearch.value)) {
+      alert("Los metros mínimos ingresados son mayores a los metros máximos")
+  } else {
+      const propFiltered = propiedadesJSON.filter(
+          ({rooms, m}) => rooms >= Number(numRooms.value) && m >= Number(minMtsSearch.value) && m <= Number(maxMtsSearch.value)
+      );
+      propiedades.innerHTML = '';
+      for (const item of propFiltered) {
+          propiedades.innerHTML += createCard(item.src, item.name, item.m, item.rooms, item.description)
+      };
+      searchTotal = propFiltered.length
+      nProp.innerHTML = `${searchTotal}`
+  }
+};
+
+/* EVENTO AL HACER CLICK EN EL BOTON LLAMANDO A LA FUNCION DE BUSQUEDA */
+
+btnFilter.addEventListener('click', () => {
+  getSearchData(nRooms, minMts, maxMts)
+});

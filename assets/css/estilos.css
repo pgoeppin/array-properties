@@ -13,7 +13,7 @@ body{
 nav{
     padding: 20px 15%; 
     border-right: solid 1px white;
-    height:100vh
+    height:100vh;
 }
 
 nav section {
@@ -33,7 +33,7 @@ nav div{
     padding: 0px 5%;
     display:grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 45px
+    gap: 45px;
 }
 .propiedad{ 
     margin: auto;
@@ -50,5 +50,5 @@ nav div{
 }
 
 .propiedad section p{
-    margin: 0px
+    margin: 0px;
 }
