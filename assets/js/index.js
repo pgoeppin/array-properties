@@ -1,3 +1,5 @@
+/* ARRAY DE DATOS */
+
 const propiedadesJSON = [
     {
       name: "Casa de campo",
@@ -48,4 +50,41 @@ const propiedadesJSON = [
       m: 500
     }
   ];
-  
+
+/* DECLARANDO DOMS */
+
+const propiedades = document.querySelector(".propiedades");
+const btnFilter = document.querySelector("#btnSearch");
+const nRooms = document.querySelector("#numRooms");
+const minMts = document.querySelector("#minMeters");
+const maxMts = document.querySelector("#maxMeters");
+const nProp = document.querySelector("#total-prop");
+
+/* CREANDO LA FUNCION TEMPLATE PARA LAS CARDS */
+
+const createCard = (img, title, meters, rooms, description) => {
+    return `
+    <div class="card propiedad">
+        <img src=${img} class="card-img-top img" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">${title}</h5>
+            <div class="d-flex justify-content-between">
+            <p class="card-text">Cuartos: ${rooms}</p>
+            <p class="card-text">Metros: ${meters}</p>
+            </div>
+            <p class="card-text">${description}</p>
+            <a href="#" class="btn btn-info">Ver mas</a>
+        </div>
+    </div>
+    `
+};
+
+/* MOSTRANDO EL TOTAL DE PROPIEDADES */
+
+const totalProp = propiedadesJSON.length
+nProp.innerHTML = `${totalProp}`
+
+/* CREANDO LAS CARDS DE LAS PROPIEDADES (antes de aplicar cualquier filtro) UTILIZANDO LA FUNCION createCard() */
+propiedades.innerHTML = '';
+for (const item of propiedadesJSON) {
+    propiedades.innerHTML += createCard(item.src, item.name, item.m, item.rooms, item.description)};
